@@ -5,6 +5,11 @@ mongoose.connect('mongodb://localhost/nodeauth');
 
 var db = mongoose.connection;
 
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+	console.log('db connected !!');
+});
+
 var UserSchema = mongoose.Schema({
 	username: {
 		type: String,
